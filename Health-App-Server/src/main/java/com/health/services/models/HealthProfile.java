@@ -17,13 +17,4 @@ public class HealthProfile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "symptoms")
-    private String symptoms;
-
-    protected HealthProfile() {}
-
-    public HealthProfile(String symptoms) {
-        this.symptoms = symptoms;
-    }
 }

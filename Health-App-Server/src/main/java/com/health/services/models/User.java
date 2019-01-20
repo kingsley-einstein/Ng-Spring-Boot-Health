@@ -24,7 +24,7 @@ public class User implements java.io.Serializable {
     @NotNull(message = "Username cannot be null")
     @NotEmpty(message = "Username cannot be left empty")
     @Column(name = "username", unique = true)
-    private String username;
+    private String name;
 
     @NotNull(message = "Email cannot be null")
     @NotEmpty(message = "Email cannot be left empty")
@@ -32,31 +32,37 @@ public class User implements java.io.Serializable {
     @Column(name = "email", unique = true)
     private String email;
 
-    @NotNull(message = "Password cannot be null")
-    @NotEmpty(message = "password cannot be empty")
-    private String password;
+    private String uniqueToken;
 
     protected User() {}
 
-    public User(String username, String email, String password) {
-        this.username = username;
+    public User(String name, String email, String uniqueToken) {
+        this.name = name;
         this.email = email;
-        this.password = password;
+        this.uniqueToken = uniqueToken;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
         return email;
     }
+    
+    public String getUniqueToken() {
+        return uniqueToken;
+    }
 
-    public String getPassword() {
-        return password;
-    } 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

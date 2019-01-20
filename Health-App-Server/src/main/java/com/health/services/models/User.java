@@ -36,6 +36,7 @@ public class User implements java.io.Serializable {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "token")
     private String uniqueToken;
 
     @JsonIgnore

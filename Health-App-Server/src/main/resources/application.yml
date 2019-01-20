@@ -1,2 +1,14 @@
 server:
-  port: 9090
+    port: 9090
+
+spring:
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 40MB
+            file-size-threshold: 5KB
+
+admin:
+    user: user
+    password: -*-
+

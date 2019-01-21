@@ -37,10 +37,21 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    public User getUser(@RequestParam("id") Long id) throws Exception {
-        return userRepo.findById(id)
-            .orElseThrow(() -> new Exception("User not found"));
+    public User getUser(@RequestParam("email") String email) {
+        return userRepo.findByEmail(email);
     }
+
+    @GetMapping("/moniker")
+    @ResponseBody
+    public User getByName(@RequestParam("name") String name) {
+        return userRepo.findByName(name);
+    }
+
+    @GetMapping("/unique_token")
+    @ResponseBody
+    public User getByToken(@RequestParam("token") String uniqueToken) {
+        return userRepo.findByUniqueToken(uniqueToken);
+    }   
 
     @DeleteMapping
     public void deleteRecord(@RequestParam("id") Long id) {

@@ -36,7 +36,8 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    public Optional<User> getUser(@RequestParam("id") Long id) {
-        return userRepo.findById(id);
+    public User getUser(@RequestParam("id") Long id) throws Exception {
+        return userRepo.findById(id)
+            .orElseThrow(() -> new Exception("User not found"));
     }
 }

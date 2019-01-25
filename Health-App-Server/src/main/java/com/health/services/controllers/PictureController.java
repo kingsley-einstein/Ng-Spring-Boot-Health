@@ -8,6 +8,7 @@ import com.health.services.repositories.HealthProfileRepository;
 import com.health.services.repositories.PictureRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,5 +52,10 @@ public class PictureController {
                 return "Picture successfully uploaded";
             }
         }
+    }
+
+    @DeleteMapping
+    public void delete(@RequestParam("id") Long id) {
+        pictureRepo.deleteById(id);
     }
 }

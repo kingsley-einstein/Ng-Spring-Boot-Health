@@ -25,7 +25,7 @@ public class Picture implements java.io.Serializable {
     private String contentType;
 
     @Column(name = "content", nullable = false, columnDefinition = "mediumBlob", unique = true)
-    private Byte[] data;
+    private byte[] data;
 
     @JsonIgnore
     @OneToOne(mappedBy = "picture")
@@ -33,7 +33,7 @@ public class Picture implements java.io.Serializable {
 
     protected Picture() {}
 
-    public Picture(final String contentType, final Byte[] data, final HealthProfile profile) {
+    public Picture(final String contentType, final byte[] data, final HealthProfile profile) {
         this.contentType = contentType;
         this.data = data;
         this.profile = profile;
@@ -43,7 +43,7 @@ public class Picture implements java.io.Serializable {
         return contentType;
     }
 
-    public Byte[] getData() {
+    public byte[] getData() {
         return data;
     }
 
@@ -51,7 +51,7 @@ public class Picture implements java.io.Serializable {
         this.contentType = contentType;
     }
 
-    public void setData(Byte[] data) {
+    public void setData(byte[] data) {
         this.data = data;
     }
 }

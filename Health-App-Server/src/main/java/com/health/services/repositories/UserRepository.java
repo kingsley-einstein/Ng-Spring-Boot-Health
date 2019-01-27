@@ -5,9 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.health.services.models.User;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUniqueToken(String uniqueToken);
-    User findByEmail(String email);
-    User findByName(String name);
+    Optional<User> findByUniqueToken(String uniqueToken);
+    Optional<User> findByEmail(String email);
+    Optional<User> findByName(String name);
 }

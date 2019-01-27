@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.health.services.models.User;
 import com.health.services.repositories.UserRepository;
+import com.health.services.exceptions.UserNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,19 +39,22 @@ public class UserController {
     @GetMapping
     @ResponseBody
     public User getUser(@RequestParam("email") String email) {
-        return userRepo.findByEmail(email);
+        return userRepo.findByEmail(email)
+            .orElseThrow(() -> new UserNotFoundException(String.format("User with email %s not found", email)));
     }
 
     @GetMapping("/moniker")
     @ResponseBody
     public User getByName(@RequestParam("name") String name) {
-        return userRepo.findByName(name);
+        return userRepo.findByName(name)
+            .orElseThrow(() -> new UserNotFoundException(String.format("User with name %s not found", name)));
     }
 
     @GetMapping("/unique_token")
     @ResponseBody
     public User getByToken(@RequestParam("token") String uniqueToken) {
-        return userRepo.findByUniqueToken(uniqueToken);
+        return userRepo.findByUniqueToken(uniqueToken)
+            .orElseThrow(() -> new UserNotFoundException("User with that token does not exist"));
     }   
 
     @DeleteMapping
@@ -64,9 +68,9 @@ public class UserController {
     }
 
     @PutMapping
-    public void update(@RequestParam("id") Long id, @RequestParam("email") String email, @RequestParam("name") String name) throws Exception {
+    public void update(@RequestParam("id") Long id, @RequestParam("email") String email, @RequestParam("name") String name) {
         User user = userRepo.findById(id)
-            .orElseThrow(() -> new Exception("User not found"));
+            .orElseThrow(() -> new UserNotFoundException(String.format("User with id %d not found", id)));
         
         user.setEmail(email);
         user.setName(name);

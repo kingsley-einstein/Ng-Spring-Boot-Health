@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.health.services.models.Picture;
 import com.health.services.repositories.HealthProfileRepository;
 import com.health.services.repositories.PictureRepository;
+import com.health.services.exceptions.IncorrectMimeTypeException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,10 +34,10 @@ public class PictureController {
             throw new Exception("Duplicate picture");
         }
         else {
-            picture = pictureRepo.findByHealthProfile(profileRepo.getOne(id));
+            picture = pictureRepo.findByHealthProfile(profileRepo.findById(id).get());
 
             if (picture != null) {
-                if (!file.getContentType().contains("image")) throw new Exception("Upload an image");
+                if (!file.getContentType().contains("image")) throw new IncorrectMimeTypeException(String.format("Incorrect mime type. Requires an image but found %s", file.getContentType()));
                 picture.setContentType(file.getContentType());
                 picture.setData(file.getBytes());
 
@@ -45,7 +46,7 @@ public class PictureController {
                 return "Picture successfully updated";
             }
             else {
-                picture = new Picture(file.getContentType(), file.getBytes(), profileRepo.getOne(id));
+                picture = new Picture(file.getContentType(), file.getBytes(), profileRepo.findById(id).get());
 
                 pictureRepo.save(picture);
 

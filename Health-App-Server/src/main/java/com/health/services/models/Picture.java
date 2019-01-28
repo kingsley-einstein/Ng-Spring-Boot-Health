@@ -28,7 +28,7 @@ public class Picture implements java.io.Serializable {
     private byte[] data;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "picture")
+    @OneToOne
     private HealthProfile profile;
 
     protected Picture() {}
@@ -45,6 +45,10 @@ public class Picture implements java.io.Serializable {
 
     public byte[] getData() {
         return data;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setContentType(String contentType) {

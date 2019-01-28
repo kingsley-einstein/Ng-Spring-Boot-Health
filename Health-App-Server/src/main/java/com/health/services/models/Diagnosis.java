@@ -38,6 +38,10 @@ public class Diagnosis implements java.io.Serializable {
         return ailments;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setAilments(String ailments) {
         this.ailments = ailments;
     }

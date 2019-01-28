@@ -18,7 +18,7 @@ public class HealthProfile implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "profile")
     private Picture picture;
 
     @OneToOne
@@ -44,6 +44,10 @@ public class HealthProfile implements Serializable {
 
     public Picture getPicture() {
         return picture;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setPicture(Picture picture) {

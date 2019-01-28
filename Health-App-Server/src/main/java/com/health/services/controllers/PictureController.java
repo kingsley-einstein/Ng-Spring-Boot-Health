@@ -39,28 +39,37 @@ public class PictureController {
             picture = pictureRepo.findByProfile(profile);
 
             if (picture != null) {
-                if (!file.getContentType().contains("image")) throw new IncorrectMimeTypeException(String.format("Incorrect mime type. Requires an image but found %s", file.getContentType()));
-                picture.setContentType(file.getContentType());
-                picture.setData(file.getBytes());
+                if (!(file.getContentType().contains("image"))) {
+                    throw new IncorrectMimeTypeException(String.format("Incorrect mime type. Requires an image but found %s", file.getContentType()));
+                }
+                else {
+                   
+                    picture.setContentType(file.getContentType());
+                    picture.setData(file.getBytes());
 
-                pictureRepo.save(picture);
+                    pictureRepo.save(picture);
 
-                profile.setPicture(picture);
+                    profile.setPicture(picture);
 
-                profileRepo.save(profile);
+                    profileRepo.save(profile);
 
-                return "Picture successfully updated";
+                    return "Picture successfully updated";
+                }
             }
             else {
-                picture = new Picture(file.getContentType(), file.getBytes(), profileRepo.findById(id).get());
+                if (!(file.getContentType().contains("image"))) throw new IncorrectMimeTypeException(String.format("Incorrect mime type. Requires an image but found %s", file.getContentType()));
+                else {
+                    
+                    picture = new Picture(file.getContentType(), file.getBytes(), profileRepo.findById(id).get());
 
-                pictureRepo.save(picture);
+                    pictureRepo.save(picture);
 
-                profile.setPicture(picture);
+                    profile.setPicture(picture);
 
-                profileRepo.save(profile);
+                    profileRepo.save(profile);
 
-                return "Picture successfully uploaded";
+                    return "Picture successfully uploaded";
+                }
             }
         }
     }

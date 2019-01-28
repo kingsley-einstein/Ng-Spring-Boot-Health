@@ -1,3 +1,20 @@
-<p>
-  login works!
-</p>
+<div [ngStyle]="{'margin': '100px auto', 'width': '50%'}">
+  <mat-card class="max-card-width">
+    <mat-card-header>
+      <mat-card-title>
+        <span>LOGIN</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="max-form-width">
+        <mat-form-field class="form-field-width">
+          <input type="text" matInput placeholder="Enter Username">
+        </mat-form-field>
+        <mat-form-field class="form-field-width">
+          <input type="password" matInput placeholder="Enter Password">
+        </mat-form-field>
+      </form>
+      <button mat-flat-button color="primary">Login</button>
+    </mat-card-content>
+  </mat-card>
+</div>

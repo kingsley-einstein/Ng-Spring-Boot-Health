@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping
     @ResponseBody
     public User create(@RequestBody Map<String, String> body) {
-        User user = new User(body.get("name"), body.get("email"), BCrypt.hashpw(BCrypt.gensalt(2), token));
+        User user = new User(body.get("name"), body.get("email"), BCrypt.hashpw(token, BCrypt.gensalt(10)));
 
         return userRepo.save(user);
     }

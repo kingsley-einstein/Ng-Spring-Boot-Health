@@ -34,7 +34,7 @@ public class PictureController {
             throw new Exception("Duplicate picture");
         }
         else {
-            picture = pictureRepo.findByHealthProfile(profileRepo.findById(id).get());
+            picture = pictureRepo.findByProfile(profileRepo.findById(id).get());
 
             if (picture != null) {
                 if (!file.getContentType().contains("image")) throw new IncorrectMimeTypeException(String.format("Incorrect mime type. Requires an image but found %s", file.getContentType()));

@@ -24,7 +24,7 @@ public class Picture implements java.io.Serializable {
     @Column(name = "mimeType")
     private String contentType;
 
-    @Column(name = "content", nullable = false, columnDefinition = "mediumBlob", unique = true)
+    @Column(name = "content", nullable = false, columnDefinition = "blob", unique = true)
     private byte[] data;
 
     @JsonIgnore

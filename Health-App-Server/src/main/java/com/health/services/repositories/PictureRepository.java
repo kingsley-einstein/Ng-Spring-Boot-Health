@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PictureRepository extends JpaRepository<Picture, Long> {
     Picture findByData(byte[] data);
-    Picture findByHealthProfile(HealthProfile profile);
+    Picture findByProfile(HealthProfile profile);
 }

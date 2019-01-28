@@ -3,7 +3,8 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -11,13 +12,15 @@ import {
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule
     ],
     exports: [
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule
     ]
 })
 export class AppUIModule {}
